@@ -20,7 +20,7 @@ namespace Assignment1
         {
             base.GetDetails();
             Console.WriteLine("Enter The Contarct Date: ");
-            contractDate = Convert.ToDateTime(Console.ReadLine());
+            contractDate = Convert.ToDateTime( Console.ReadLine());
             Console.WriteLine("Enter The Contract Duration in days: ");
             duration = Convert.ToInt32(Console.ReadLine());
             Console.WriteLine("Enter The Charges: ");

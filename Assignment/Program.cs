@@ -31,9 +31,9 @@
                                
                                  CalculateOnContract(onContract.duration, onContract.charges);
 
-                                OnContract employee = new OnContract();
+                                Employee employee = new OnContract();
                                 Dal dal = new Dal();
-                                dal.AddEmployee(1, employee);
+                                dal.AddEmployee(1, onContract);
                                 
                                 
 

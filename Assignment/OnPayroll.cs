@@ -8,11 +8,11 @@ namespace Assignment1
 {
     internal class OnPayroll:Employee
     {
-        byte exp;
-        double basicSalary;
-        DateTime joiningDate;
-        double hra, da, netSalary;
-        int pf;
+        public byte exp;
+        public double basicSalary;
+        public DateTime joiningDate;
+        public double hra, da, netSalary;
+        public int pf;
         public override void GetDetails()
         {
             base.GetDetails();
