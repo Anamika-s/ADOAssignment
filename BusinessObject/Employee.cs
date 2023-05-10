@@ -4,13 +4,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Assignment1
+namespace BO
 {
-    internal class Employee
+    public partial class Employee
     {
         int id;
         public string name;
         public string reportingManager;
+        public Employee()
+        {
+
+        }
+        public Employee(int id, string name, string reportingManager)
+        {this.id= id;
+             this.name = name;
+            this.reportingManager= reportingManager;
+        }
         public virtual void GetDetails()
         {
            

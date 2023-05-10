@@ -4,15 +4,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Assignment1
+namespace BO
 {
-    internal class OnPayroll:Employee
+    public partial class OnPayroll:Employee
     {
         public byte exp;
         public double basicSalary;
         public DateTime joiningDate;
         public double hra, da, netSalary;
         public int pf;
+        public OnPayroll()
+        {
+
+        }
+        public OnPayroll(int id, string name, string reportingManager, DateTime joiningDate, double hra, double da)
+           : base(id, name, reportingManager)
+        {
+            this.joiningDate = joiningDate;
+            this.hra = hra;
+            this.da = da;
+        }
         public override void GetDetails()
         {
             base.GetDetails();
@@ -22,10 +33,7 @@ namespace Assignment1
             basicSalary = double.Parse(Console.ReadLine());
             Console.WriteLine("Enter the Joining Date");
             joiningDate = DateTime.Parse(Console.ReadLine());
-            Console.WriteLine("Enter Hra: ");
-            hra = double.Parse(Console.ReadLine());
-            Console.WriteLine("Enter The DA");
-            da = double.Parse(Console.ReadLine());
+            
             CalculatePayment(basicSalary, exp);
             DisplayDetails();
 

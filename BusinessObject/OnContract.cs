@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Assignment1
+namespace BO
 {
-    internal class OnContract: Employee
+    public partial class OnContract: Employee
     {
         public DateTime contractDate;
         public int duration;
@@ -16,7 +16,14 @@ namespace Assignment1
         {
 
         }
-        public override void GetDetails()
+        public OnContract(int id, string name, string reportingManager, DateTime contractDate,int duration, double charges)
+            : base(id, name, reportingManager)
+        {
+            this.contractDate = contractDate;
+            this.duration = duration;
+            this.charges = charges;
+        }
+          public override void GetDetails()
         {
             base.GetDetails();
             Console.WriteLine("Enter The Contarct Date: ");
@@ -28,6 +35,7 @@ namespace Assignment1
             CalculatePayment();
 
         }
+
         public void CalculatePayment()
         {
             paymentAmt = charges * duration;

@@ -1,12 +1,17 @@
-﻿namespace Assignment1
+﻿using BAL;
+using BO;
+//using BusinessObject;
+namespace PLayer
 {
-    internal class Program
+    public class Program
     {
         static void Main(string[] args)
         {
+            BAL.Bal bal = new Bal();
+
             byte ch;
             char choice = 'y';
-            while(choice=='y')
+            while (choice == 'y')
             {
                 Console.WriteLine("Main Menu");
                 Console.WriteLine("1.Add Record");
@@ -15,57 +20,71 @@
                 Console.WriteLine("4.List of Employee");
                 Console.WriteLine("5.Search Employee By ID");
                 Console.WriteLine("Enter Your Choice");
-                ch=byte.Parse(Console.ReadLine());
-                switch(ch)
+                ch = byte.Parse(Console.ReadLine());
+                switch (ch)
                 {
                     case 1:
                         {
                             Console.WriteLine("Prees\n1.Oncontract basis\n2.on payroll");
                             int x = Convert.ToInt32(Console.ReadLine());
-                            
-                            if (x==1)
+
+                            if (x == 1)
                             {
-                                
-                                OnContract onContract = new OnContract();
+                                Employee onContract = new OnContract();
+
                                 onContract.GetDetails();
-                               
-                                 CalculateOnContract(onContract.duration, onContract.charges);
+                                if (onContract is OnContract)
+                                {
+                                    CalculateOnContract(((OnContract)onContract).duration, ((OnContract)onContract).charges);
+                                }
 
-                                Employee employee = new OnContract();
-                                Dal dal = new Dal();
-                                dal.AddEmployee(1, onContract);
+                                    Console.WriteLine(bal.AddEmployee(onContract));
                                 
-                                
+
+
 
 
                             }
-                            else if(x==2)
+                            else if (x == 2)
                             {
-                                
-                               
-                                Console.WriteLine("Enter the Joining Date date: ");
-                                DateTime joiningDate = DateTime.Parse(Console.ReadLine());
-                                Console.WriteLine("Enter the experience");
-                                byte exp = byte.Parse(Console.ReadLine());
-                                Console.WriteLine("Enter The basic Salary");
-                                double basicSalary=Convert.ToDouble(Console.ReadLine());
-                                double netSalary = CalculateOnPayroll(basicSalary, exp);
+
+
+                                Employee onPayroll = new OnPayroll();
+                                onPayroll.GetDetails();
+                                if (onPayroll is OnContract)
+                                    CalculateOnPayroll(((OnPayroll)onPayroll).basicSalary, ((OnPayroll)onPayroll).exp);
+
+                                //dal.AddEmployee(onPayroll);
+
+
                             }
+
                             else
                             {
                                 Console.WriteLine("Enter a valid Option");
                             }
                             break;
                         }
+                    case 2:
+                        {
+
+                            //List<Employee> list = dal.GetEmpoloyees();
+                            //Console.WriteLine(list.Count);
+                            //foreach (Employee employee in list)
+                            //{
+                            //    Console.WriteLine(employee.name);
+                            //}
+                            break;
+                        }
                 }
             }
 
         }
-        public  static double CalculateOnContract(int days,double chargePerDay)
+        public static double CalculateOnContract(int days, double chargePerDay)
         {
-             return days * chargePerDay;
+            return days * chargePerDay;
         }
-        public static double CalculateOnPayroll(double basicSalary,byte exp)
+        public static double CalculateOnPayroll(double basicSalary, byte exp)
         {
             double netSalary;
             if (exp > 10)
